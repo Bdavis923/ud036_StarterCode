@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Brandon's Trailers</title>
+
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <style type="text/css" media="screen">
+        body {
+            padding-top: 80px;
+        }
+		h1{
+			text-align: center;
+		}
+        #trailer .modal-dialog {
+            margin-top: 200px;
+            width: 640px;
+            height: 480px;
+        }
+        .hanging-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            z-index: 9001;
+        }
+        #trailer-video {
+            width: 100%;
+            height: 100%;
+        }
+        .movie-tile {
+            margin-bottom: 20px;
+            padding-top: 20px;
+        }
+        .movie-tile:hover {
+            background-color: #EEE;
+            cursor: pointer;
+        }
+		 .show-tile {
+            margin-bottom: 20px;
+            padding-top: 20px;
+        }
+        .show-tile:hover {
+            background-color: #EEE;
+            cursor: pointer;
+        }
+        .scale-media {
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+        .scale-media iframe {
+            border: none;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: white;
+        }
+    </style>
+    <script type="text/javascript" charset="utf-8">
+        // Pause the video when the modal is closed
+        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $("#trailer-video-container").empty();
+        });
+        // Start playing the video whenever the trailer modal is opened
+        $(document).on('click', '.movie-tile', function (event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+        });
+		$(document).on('click', '.show-tile', function (event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+        });
+		
+        // Animate in the movies when the page loads
+        $(document).ready(function () {
+          $('.movie-tile').hide().first().show("fast", function showNext() {
+            $(this).next("div").show("fast", showNext);
+          });
+        });
+		$(document).ready(function () {
+          $('.show-tile').hide().first().show("fast", function showNext() {
+            $(this).next("div").show("fast", showNext);
+          });
+        });
+		
+        
+    </script>
+</head>
+
+  <body>
+    <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="scale-media" id="trailer-video-container">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Page Content -->
+    <div class="container">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#movies">Movie Trailers</a>
+			<a class="navbar-brand" href="#shows">TV Shows</a>
+          </div>
+        </div>
+      </div>
+    </div>
+	<div class="container" id="movies">
+      <h1>Movies</h1>
+    </div>
+    <div class="container">
+      
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="znTLzRJimeY.com" data-toggle="modal" data-target="#trailer">
+    <img title="Story of Achilles" src="https://images-na.ssl-images-amazon.com/images/I/612Z1A--gWL._SY355_.jpg" width="220" height="342">
+    <h2>Troy</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="cxCE9gDm1vo" data-toggle="modal" data-target="#trailer">
+    <img title="Movie about stealing cars" src="http://strayhair.com/wp-content/uploads/2016/02/featured-gone-in-60.jpg" width="220" height="342">
+    <h2>Gone in 60 Seconds</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="sR0SDT2GeFg" data-toggle="modal" data-target="#trailer">
+    <img title="An idealistic FBI agent is enlisted by a government task force to aid in the escalating war against drugs at the border area between the U.S. and Mexico." src="http://t3.gstatic.com/images?q=tbn:ANd9GcT4oUDoLOJuqZNW-rZGnc4TquZoOKcNmkwCgDzikSL6enj4XH7R" width="220" height="342">
+    <h2>Sicario</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="5MBjAN7jqsQ" data-toggle="modal" data-target="#trailer">
+    <img title="During an attack on a U.S. compound in Libya, a security team struggles to make sense out of the chaos." src="https://images-na.ssl-images-amazon.com/images/I/91zhWpXHVzL._SL1500_.jpg" width="220" height="342">
+    <h2>13 Hours</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="xjDjIWPwcPU" data-toggle="modal" data-target="#trailer">
+    <img title="T'Challa, after the death of his father, the King of Wakanda, returns home to the isolated, technologically advanced African nation to succeed to the throne and take his rightful place as king." src="http://t1.gstatic.com/images?q=tbn:ANd9GcS9XmH8C4x242GdYwyZtIOFOUqaZ5XMPSxY5zc2nVR_pbteQcSq" width="220" height="342">
+    <h2>Black Panther</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="uCrDhmD3khg" data-toggle="modal" data-target="#trailer">
+    <img title="From start to finish, it's a story of friendship between 4 street-wise males who don't mind using violence to achieve the lives that they want. They trust no one but each other which is vital to their success as mobsters." src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/Mobsters_poster.jpg/220px-Mobsters_poster.jpg" width="220" height="342">
+    <h2>Mobsters</h2>
+</div>
+
+    </div>
+	<div class="container" id="shows">
+      <h1>TV Shows</h1>
+    </div>
+	<div class="container">
+      
+<div class="col-md-6 col-lg-4 show-tile text-center" data-trailer-youtube-id="r6GRGEw7P9I" data-toggle="modal" data-target="#trailer">
+    <img title="Based on the comic strip, Huey and Riley move away from the city and out to the suburbs with their irascible grandfather. Biting socio-political commentary ensues." src="https://www.watchcartoononline.io/thumbs/Boondocks-Season-3-Episode-5-English-Dubbed.jpg" width="220" height="342">
+    <h2>Boondocks</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 show-tile text-center" data-trailer-youtube-id="giKGGDfT0DQ" data-toggle="modal" data-target="#trailer">
+    <img title="The continuing adventures of the mighty warrior Son Goku, as he encounters new worlds and new warriors to fight." src="http://img1.ak.crunchyroll.com/i/spire4/0caa4a6297700ea5ce63a45d9596d2bf1476994570_full.jpg" width="220" height="342">
+    <h2>Dragon Ball Super</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 show-tile text-center" data-trailer-youtube-id="-5xdTlgaaaw" data-toggle="modal" data-target="#trailer">
+    <img title="Nine noble families fight for control over the mythical lands of Westeros, while a forgotten race returns after being dormant for thousands of years." src="http://ll-c.ooyala.com/e1/11cnduYjE6BQ5jWju1l4_-cAa5rebe7x/promo322954306" width="220" height="342">
+    <h2>Game of Thrones</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 show-tile text-center" data-trailer-youtube-id="uDcQbk78CSw" data-toggle="modal" data-target="#trailer">
+    <img title="Baltimore drug scene, seen through the eyes of drug dealers and law enforcement." src="https://upload.wikimedia.org/wikipedia/en/2/2d/The_Wire_-_Season_1.jpg" width="220" height="342">
+    <h2>The Wire</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 show-tile text-center" data-trailer-youtube-id="0bbwp6feNwM" data-toggle="modal" data-target="#trailer">
+    <img title="James Ghost St. Patrick, a wealthy New York night club owner who has it all, catering for the city's elite and dreaming big, lives a double life as a drug kingpin." src="https://images-na.ssl-images-amazon.com/images/M/MV5BOTA4NTkzMjUzOF5BMl5BanBnXkFtZTgwNzg5ODkxOTE@._V1_SX170_CR0,0,170,250_AL_.jpg" width="220" height="342">
+    <h2>Power</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 show-tile text-center" data-trailer-youtube-id="U7elNhHwgBU" data-toggle="modal" data-target="#trailer">
+    <img title="chronicles the rise of the cocaine trade in Colombia and the gripping real-life stories of drug kingpins of the late '80s in this raw, gritty original series." src="http://theurbantwist.com/wp-content/uploads/2016/09/narcos-cover.jpg" width="220" height="342">
+    <h2>Narcos</h2>
+</div>
+
+    </div>
+  </body>
+</html>
